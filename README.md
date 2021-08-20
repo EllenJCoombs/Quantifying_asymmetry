@@ -3,7 +3,7 @@
 
 ![owl_asymmetry](owl_asymmetry.jpg)
 
-Image: a stylised owl skull showing cranial asymmetry. Credit: [British Trust for Ornithology](https://www.bto.org/our-science/projects/project-owl/learn-about-owls/owl-hearing)
+<sup>Image: a stylised owl skull showing cranial asymmetry. Credit: [British Trust for Ornithology](https://www.bto.org/our-science/projects/project-owl/learn-about-owls/owl-hearing)</sup>
 
 
 __Authors:__
