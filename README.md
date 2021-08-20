@@ -1,6 +1,7 @@
 # Quantifying asymmetry in non-symmetrical morphologies, with an example from Cetacea 
-:chart_with_upwards_trend:
 
+
+![_Thylamys pallidor_](https://www.researchgate.net/profile/Thomas_Giarla/publication/232678215/figure/fig17/AS:268009122037799@1440909762466/Figure-1-Thylamys-pallidior-from-Bahia-Cracker-4256%27S-6420%27W-Chubut-Argentina.png)
 
 __Authors:__
 [Ellen J. Coombs](mailto:ellen.coombs.14@ucl.ac.uk),
