@@ -1,7 +1,7 @@
 # Quantifying asymmetry in non-symmetrical morphologies, with an example from Cetacea 
 
 
-![owl_asymmetry](owl_asymmetry.jpeg)
+![owl_asymmetry](owl_asymmetry.jpg)
 
 __Authors:__
 [Ellen J. Coombs](mailto:ellen.coombs.14@ucl.ac.uk),
