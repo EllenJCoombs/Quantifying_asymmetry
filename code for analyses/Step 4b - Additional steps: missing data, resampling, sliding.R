@@ -253,4 +253,4 @@ spheres3d(Shape_data_with_bilats[c(1114:1448),,1], radius = 1, col = 'green')
 spheres3d(Shape_data_with_bilats[c(124:1113),,1], radius = 1, col = 'blue')
 
 #MIRROR - the two data sets (asymm and symm) require different mirroring because of the difference in manually and computer mirrored LMs
-#SEE 
+#SEE Step 5 - landmarking asymmetrical specimens 
