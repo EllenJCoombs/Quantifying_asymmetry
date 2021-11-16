@@ -1,6 +1,13 @@
 #Code adapted from Guillerme, T and Weisbecker V (2019). 
 #landvR: Tools for measuring landmark position variation. Zenodo. doi:10.5281/zenodo.2620785
 
+###########################################
+#                                         #
+#      Step 2 - Coombs and Felice         #
+#                                         #
+###########################################
+
+
 #Looking at asymmetry in odontocetes and mysticetes
 #Run for all specimens (157) 
 #Run for a subset of bilaterally symmetrical specimens (mysticetes in this example)
@@ -91,7 +98,7 @@ full_skull <- arraylm
 
 #############################
 #                           #
-#  PROCRUSTES THE DATA      #
+#   PROCRUSTES THE DATA     #
 #                           #
 #############################
 
@@ -181,7 +188,7 @@ spheres3d(MirroredAC[c(1:66),,1],col=2,radius=4)
 
 #############################
 #                           #
-#  PROCRUSTES THE DATA      #
+#   PROCRUSTES THE DATA     #
 #                           #
 #############################
 
