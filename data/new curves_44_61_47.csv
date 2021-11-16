@@ -1,0 +1,65 @@
+﻿Curves,lm1 ,lm2 ,ptswanted,Bone
+1,1,4,10,nasal
+2,4,3,5,nasal
+3,3,2,10,nasal
+4,2,1,5,nasal
+5,5,6,5,premax
+6,6,7,35,premax
+7,7,8,35,premax
+8,8,5,5,premax
+9,9,10,35,maxilla
+10,10,11,10,maxilla
+11,11,12,30,maxilla
+12,12,13,10,maxilla
+13,13,14,10,maxilla
+14,14,15,15,maxilla
+15,15,9,25,maxilla
+16,19,24,30,frontal
+17,24,23,10,frontal
+18,23,22,10,frontal
+19,22,21,15,frontal
+20,21,20,20,frontal
+21,20,19,5,frontal
+22,25,26,15,parietal
+23,26,27,10,parietal
+24,27,28,15,parietal
+25,28,29,15,parietal
+26,29,25,10,parietal
+27,32,33,10,squamosal
+28,33,32,25,squamosal
+29,31,30,20,squamosal
+30,30,37,5,squamosal
+31,37,36,5,squamosal
+32,36,31,20,squamosal
+33,34,35,15,mandibular process
+34,35,34,15,mandibular process
+35,39,40,20,supraoccipital
+36,40,41,10,supraoccipital
+37,41,42,10,supraoccipital
+38,42,43,15,supraoccipital
+39,43,44,15,supraoccipital
+40,44,45,20,supraoccipital
+41,45,39,10,supraoccipital
+42,41,46,15,occipital condyle
+43,46,47,10,occipital condyle
+44,47,41,10,occipital condyle
+45,48,49,20,basioccipital
+46,49,50,15,basioccipital
+47,50,48,25,basioccipital
+48,54,51,15,basioccipital
+49,51,52,15,basioccipital
+50,52,53,15,basioccipital
+51,53,54,15,basioccipital
+52,55,56,20,palate
+53,56,58,25,palate
+54,58,57,25,palate
+55,57,55,5,palate
+56,57,59,10,pterygoid
+57,59,60,10,pterygoid
+58,60,57,10,pterygoid
+59,61,62,25,maxilla
+60,62,63,5,maxilla
+61,63,56,45,maxilla
+62,64,66,15,premax
+63,66,65,10,premax
+64,65,64,15,premax
