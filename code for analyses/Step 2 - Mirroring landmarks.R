@@ -203,5 +203,5 @@ Mirrored_skull_AC=Mirrored_data$coords #Subset out the coords
 col=rainbow(length(1:dim(Mirrored_data)[1]))
 shapes3d(Y.gpa$coords[,,1], color=col)
 
-#We now have two data sets with which to quanitfy asymmetry: the manually landmarked skull (Full_skull_AB) and the computer mirrored data (Mirrored_skull_AC)
+#We now have two data sets with which to quanitfy asymmetry: the manually landmarked skull (Manual_skull_AB) and the computer mirrored data (Mirrored_skull_AC)
 #Use these in Step 3
