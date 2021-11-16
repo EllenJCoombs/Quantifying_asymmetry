@@ -1,5 +1,13 @@
 
+#IMPORTANT NOTE - this code should be run after Step 4: Informing the curve protocol – which curves to manually place (see notes below)
 
+#There are several general steps (i.e., not related to quantifying asymmetry specifically) that should be taken after 
+#Step 4: Informing the curve protocol – which curves to manually place, before mirroring curves
+#These additional steps have been highlighted here as a side note and are available in the detail 
+#in the Supporting Information: Section 1: Additional steps before running geometric morphometric analyses 
+
+#The example shown here is run on the asymmetrical data set (.pts) - run all the same steps for symmetrical data set (.pts)
+#CAUTION - you will need a different curve_table for asymm and symm specimens as asymm specimens will have more manually placed curves (see below) 
 
 library(tidyverse)
 library(broom) #needed with tidyverse
@@ -27,23 +35,15 @@ library(SURGE)
 library(RColorBrewer) # for color palettes
 library(magick)
 
+#import table defining curves for the asymmetrical specimens 
+#different curves table for the asymmetrical specimens 
+curve_table <- read_csv('new curves_asymm.csv')
 
-#Set path to PTS final LHS - this is where all of the curves excels etc are 
+#different curve_table for symmetrical specimens (only 64 curves)
+curve_table <- read_csv('new curves_symm.csv')
 
-#import table defining curves
-#different curves table for the odontocetes 
-curve_table <- read_csv('new curves_odontocetes_44_61_47.csv')
-#different for mysticetes (only 64 curves)
-curve_table <- read_csv('new curves_44_61_47.csv')
-
-#identify the folder where your pts files are, INCLUDING TEMPLATE
-ptsfolder <- "D:/PTS WHOLE SKULL/Archs/pts"
-ptsfolder <- "D:/PTS WHOLE SKULL/Mysts/pts"
-ptsfolder <- "D:/PTS WHOLE SKULL/Odonts/pts"
-ptsfolder <- "D:/PTS WHOLE SKULL/Longirostrine/Schizodelphis/pts"
-ptsfolder <- "D:/PTS WHOLE SKULL/Kogiids/pts"
-
-ptsfolder <- "D:/PTS WHOLE SKULL/Odonts"
+#identify the folder where your pts files are
+ptsfolder <- "D:/PTS WHOLE SKULL/asymm specs/pts"
 
 
 #import the pts file names
@@ -59,11 +59,10 @@ capture.output(import_chkpt_data(ptslist, my_curves, subsampl = TRUE, verbose=TR
 #this makes for bad plots in checkLM, so switch them to NA
 subsampled.lm[subsampled.lm == 9999] <- NA
 
-
+#TEST TO SEE HOW THEY LOOK - check for any missing or incorrect curves 
 #SET WORKING DIRECTORY TO ASCII PLY
 #check to make sure your curves look okay on each specimen
 checkLM(subsampled.lm,path="./ply/", pt.size = 2,suffix=".ply",render="s", begin = 5)
-
 
 newpts <- subsampled.lm
 
@@ -115,7 +114,6 @@ setwd("D:/Ply ASCII/ply ASCII/Archs")
 }
 
 
-
 #re-estimate missing post sliding
 slided4.all$dataslide[which(is.na(newpts))]<-NA
 #Fix missing landmarks
@@ -128,8 +126,8 @@ slidedlms <- slid.lms$out
 checkLM(slidedlms,path="./ply/", pt.size = 2,suffix=".ply",render="s", begin = 5)
 
 
-slidedlmsSCHIZO<- slidedlms
-save(slidedlmsSCHIZO, file = 'slidedlmsSCHIZO.R')
+slidedlms <- slidedlms
+save(slidedlms, file = 'slidedlmsSCHIZO.R')
 
 
 #####################
@@ -140,8 +138,7 @@ save(slidedlmsSCHIZO, file = 'slidedlmsSCHIZO.R')
 
 ########################################################
 #                                                      #
-#         Odontocetes only - absent bones and          #
-#         removal of unamed specimens                  #
+#  Dealing with specimens with variably present bones  #
 #                                                      #
 #                                                      #
 ########################################################
@@ -199,8 +196,8 @@ slidedlmsODONTS2 = slid.lms.neg$out
 ##################################
 #                                #
 #                                #
-#   ADD FAKE MIDLINE LANDMARKS   #
-#                                #
+#   ADD ADDITIONAL MIDLINE LMS   #
+#   TO HELP ALIGNMENT            #
 #                                #
 ##################################
 
@@ -219,7 +216,7 @@ LM2_midline=colSums(LM2_bilat)/2
 
 #Then just visually check that you're happy the code worked (IMPORTANT!):
 ## read in a specimen ply and plot these landmarks on it:
-Pipa=ply2mesh(file="D:/Ply ASCII/ply ASCII/Odonts/ply/Acrodelphis UCMP 73695.ply")
+Pipa=ply2mesh(file="D:/Ply ASCII/ply ASCII/Odonts/ply/Orcinus orca USNM 11980.ply") #This is a test specimen 
 shade3d(Pipa, col="white")
 spheres3d(LM1_midline[,1]) #bracketed is specimen number
 spheres3d(LM2_midline[,1])
@@ -232,138 +229,28 @@ Shape_data_with_bilats=abind::abind(slidedlmsZARHI, LM1_midline, LM2_midline, al
 #(that still includes the original 4 landmarks that you used for creating the midline points)
 
 #Then include these two points in your midline definition
-#MYSTICETES
+#symmetrical specimens 
 midline<-as.integer(c(38,40,48,49,51,54,55,56,61,1114,1115)) 
 
-#ODONTS AND ARCHS
+#asymmetrical specimens
 midline<-as.integer(c(38,40,48,49,51,54,55,56,61,1449,1450)) 
 #check
-#The fake landmarks are 1449 and 1450 in the odonts and archs now 
-#MYSTICETES
+#The additional LMs are higher up in the asymm specimens because they additional manually placed curves  
+#Check symm specimens 
 spheres3d(Shape_data_with_bilats[c(1114:1115),,1], radius = 1, col='red')
 spheres3d(Shape_data_with_bilats[midline,,1], radius = 1, col = 'black')
 spheres3d(Shape_data_with_bilats[c(1:123),,1], radius = 1, col = 'yellow')
 spheres3d(Shape_data_with_bilats[c(124:1113),,1], radius = 1, col = 'green')
 
-
-#ODONTS AND ARCHS
+#Asymmetrical specimens 
 midline<-as.integer(c(38,40,48,49,51,54,55,56,61,1449,1450)) 
 #check
-#The fake landmarks are 1449 and 1450 in the odonts and archs now 
+#The fake landmarks are 1449 and 1450 in the asymmetrical specimens 
 spheres3d(Shape_data_with_bilats[c(1449:1450),,1], radius = 1, col='red')
 spheres3d(Shape_data_with_bilats[midline,,1], radius = 1, col = 'black')
 spheres3d(Shape_data_with_bilats[c(1:123),,1], radius = 1, col = 'yellow')
 spheres3d(Shape_data_with_bilats[c(1114:1448),,1], radius = 1, col = 'green')
 spheres3d(Shape_data_with_bilats[c(124:1113),,1], radius = 1, col = 'blue')
 
-#MIRROR AS NORMAL 
-#see 'Carla odontocetes.R' for the odonts and archs
-#See #Mirroring.R' for the mysts 
-
-
-#save(slidedlmsODONTS, file ="slidedlmsODONTS.R"
-
-#Remove specimens not in the tree e.g stem odontocete and pliopontid 
-#Make sure you get the numbers right (check pts list)
-
-
-#slidedlmsODONTS <- slidedlmsODONTS[,,-c(83, 84, 85, 87, 113, 135, 146, 147)]      
-
-
-#ELLEN- I DON'T RUN THIS OPTIONAL CODE
-#I run 'regions.R' and 'checking_modules.R'
-
-
-###########################################
-
-
-#OPTIONAL
-#define which curves belong to which modules for a pretty plot
-#curvemodules<-c()
-#for (i in 1:nrow(curve_table)) {
-#x<-rep(curve_table$Bone[i],curve_table$ptswanted[i])
-#curvemodules<-c(curvemodules,x)
-#}
-
-#curvemodules<-c(rep(0,length(my_curves$Fixed)),curvemodules)
-#curvemodules<-as.factor(curvemodules)
-#levels(curvemodules)<- c("black", "#6a3d9a","dimgrey","#fb9a99",  "gold", "#009E73",  "#D55E00", "#CC79A7", "cyan2",  "#e31a1c", "#0072B2", "#b2df8a", "#E69F00",  "whitesmoke" ,  "deeppink",   "#a6cee3",   "#F0E442","blue","red","brown")
-
-
-#import the mesh of specimen 1 for visualizing
-#mesh1<-vcgImport("D:/Ply ASCII/ply ASCII/Archs/ply/Aegytocetus tarfa MSNTUP I-15459.ply")
-
-#open a 3d window with two viewing frames
-#open3d()
-#mfrow3d(nr=1,nc=2)
-
-#plot the landmarks and curves on the specimen
-#shade3d(mesh1,col="white")
-#spheres3d(newpts[my_curves$Fixed,,1],col="red", radius = 3)
-#spheres3d(newpts[my_curves$Sliding.LMs,,1],col="gold", radius = 3)
-
-
-#plot the landmarks and curves colored by module
-#next3d()
-#shade3d(mesh1,col="white")
-#spheres3d(newpts[,,1],col=curvemodules, radius = 3)
-
-#export list of taxa 
-#write.csv(as.matrix(dimnames(newpts)[[3]]),file="./Raw_Data/mytaxonomytable.csv",quote=FALSE)
-
-
-
-#remove the landmarks on the RHS
-#newpts <- newpts[-c(67:123),,]     
-
-#change names to match names in trees
-#taxonomy <- read.csv("xxxx")
-#for (i in 1:nrow(taxonomy)){
- #dimnames(slid)[[3]][which(dimnames(slid)[[3]]==taxonomy$Filename[i])]<-taxonomy$Tip_label[i]
-#}
-
-
-#plot the landmarks and curves colored by module
-#module.ids<-read_csv("./Raw_Data/module.color.table.csv")
-#mod_colors<-module.ids
-#module_colors<-as.factor(mod_colors$Color)
-#color.palette <- c( "#6a3d9a","dimgrey","#fb9a99",  "gold", "#009E73",  "#D55E00", "#CC79A7", "cyan2",  "#e31a1c", "#0072B2", "#b2df8a", "#E69F00",  "whitesmoke" ,  "deeppink",   "#a6cee3",   "#F0E442","blue","red","brown", "black")
-#levels(module_colors)<-color.palette
-
-
-#open3d()
-#shade3d(mesh.acinonyx,col="#E4D1C0")
-#spheres3d(patched_all[,,1],col=module_colors,radius=.5)
-#rgl.snapshot("./Figures/acinonyx_modules.png")
-
-
-#Creating 'missing' landmarks to be able to slide
-
-
-#misslist<-createMissingList(dim(newpts)[3])
-#for (j in 1:dim(newpts)[[3]]){
-  #misslist[[j]]<-which(is.na(newpts[,1,j]))
-#} 
-
-#newpts2<-fixLMtps(newpts)
-
-#{
- #slided4.all <- slider3d(newpts2$out, SMvector= my_curves$Sliding.LMs,
-                          #outlines = my_curves$Curve, sur.path = "./ply", sur.name = NULL, 
-                          #meshlist = paste("./ply/",dimnames(newpts2$out)[[3]],".ply",sep=""), ignore = NULL,
-                          #sur.type = "ply", tol = 1e-10, deselect = FALSE, inc.check = FALSE,
-                          #recursive = TRUE, iterations = 3, initproc = TRUE,
-                          #pairedLM = 0, mc.cores = 1, bending=TRUE,
-                          #fixRepro = FALSE,stepsize=0.2,
-                          #missingList=misslist)
-#}
-
-
-
-#re-estimate missing post sliding
-#slided4.all$dataslide[which(is.na(newpts))]<-NA
-#slid.lms<-fixLMtps(slided4.all$dataslide)
-
-
-#THEN MIRROR 
-#THEN PROCRUSTES
+#MIRROR - the two data sets (asymm and symm) require different mirroring because of the difference in manually and computer mirrored LMs
+#SEE 
