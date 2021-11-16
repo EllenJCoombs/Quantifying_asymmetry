@@ -95,8 +95,8 @@ text3d(arraylm[,,2], text=1:dim(arraylm)[1])
 #This would be to change the names according to the species (as above with .ply)
 #dimnames(arraylm)[3]=species
 
-#let's call arraylm 'full skull' to differentiate from the mirrored skull LMs
-full_skull <- arraylm
+#let's call arraylm 'manual skull' to differentiate from the mirrored skull LMs
+manual_skull <- arraylm
 
 #############################
 #                           #
@@ -104,15 +104,15 @@ full_skull <- arraylm
 #                           #
 #############################
 
-full_skull=gpagen(full_skull) #Remove non-shape aspects 
-Full_skull_AB=full_skull$coords #Subset out the coords 
-size=full_skull$Csize #centroid size
+manual_skull=gpagen(manual_skull) #Remove non-shape aspects 
+Manual_skull_AB=manual_skull$coords #Subset out the coords 
+size=manual_skull$Csize #centroid size
 #PlotTangentSpace if you want to see a quick morphospace of the skulls 
 
-PCA <- plotTangentSpace(full_skull$coords, legend=TRUE) 
+PCA <- plotTangentSpace(manual_skull$coords, legend=TRUE) 
 
-#Full_skull_AB is the Procrusted coords dataset of manually placed landmarks
-#AB denotes full skull, AC denotes half skull 
+#Manual_skull_AB is the Procrusted coords dataset of manually placed landmarks
+#AB denotes manually LMed skull, AC denotes computer mirrored skull
 
 ############################################################
 #                                                          #
