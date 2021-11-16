@@ -81,7 +81,7 @@ arraylm <- estimate.missing(arraylm,method="TPS")
 
 #careful not to have missing data 
 #check here and also check all of the LMs are numbered correctly 
-text3d(arranged[,,2], text=1:dim(arranged)[1])
+text3d(arraylm[,,2], text=1:dim(arraylm)[1])
 
 #This would be to change the names according to the species (as above with .ply)
 #dimnames(arraylm)[3]=species
@@ -203,7 +203,7 @@ library(landvR)
 
 ############# LANDVR ###################
 #Check the values
-Mirrored_skull_AC[1,,2] == arranged_data[1,,2]
+Mirrored_skull_AC[1,,2] == Full_skull_AB[1,,2]
 # FALSE FALSE FALSE
 ## This is due to rounding, in fact they have the same 9 digits - round them 
 round(Mirrored_skull_AC[1,,2], digits = 9) == round(FUll_skull_AB[1,,2], digits = 9)
