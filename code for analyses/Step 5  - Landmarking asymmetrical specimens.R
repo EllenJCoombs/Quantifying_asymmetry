@@ -13,11 +13,11 @@ library(Morpho)
 #These additional steps have been highlighted as a side note and are available in the paper 
 #See 'Additional steps before running geometric morphometric analyses' both in the 'code for analyses' and the Supporting information. 
 
-###################################
-#                                 #
-#      MIRRORING LANDMARKS        #
-#                                 #
-###################################
+##########################################
+#                                        #
+#   landmarking symmetrical specimens    #
+#                                        #
+##########################################
 
 #import .csv defining curves 
 curve_table <- read_csv('new curves.csv')
