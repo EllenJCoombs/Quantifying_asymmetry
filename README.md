@@ -1,4 +1,4 @@
-# Quantifying asymmetry in non-symmetrical morphologies, with an example from Cetacea 
+# A unified approach to quantifying shape in symmetric and asymmetric morphologies, with an example from Cetacea 
 
 
 ![owl_asymmetry](owl_asymmetry.jpg)
