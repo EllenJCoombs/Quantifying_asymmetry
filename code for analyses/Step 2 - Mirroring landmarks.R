@@ -74,7 +74,7 @@ manual_skull <- arraylm
 
 #############################
 #                           #
-#   PROCRUSTES THE DATA     #  #Or read in our data set 'mirror_skull_LMs.R' if you are not using your own data and skip this part 
+#   PROCRUSTES THE DATA     #  Or read in our data set 'mirror_skull_LMs.R' if you are not using your own data and skip this part 
 #                           #
 #############################
 
@@ -90,8 +90,8 @@ PCA <- plotTangentSpace(manual_skull$coords, legend=TRUE)
 
 ############################################################
 #                                                          #
-#     2. Load second dataset - half LM skull to mirror     # 
-#                                                          #                            
+#     2. Load second dataset - half LM skull to mirror     #  Or read in our data set 'mirror_skull_LMs.R' if you are not using your own data and skip to line 126
+#                                                          #                          
 ############################################################
 
 setwd("X:xxxxxxx/xxxxxx") 
@@ -110,9 +110,8 @@ for(i in 1:length(ptslist))
 
 #Set to the whole project directory for this - the code wants to look for 'ply' folder 
 dimnames(ptsarrayAC)[3]<-list(
-  substr(dir("./ply",pattern=".ply"),1,(nchar(dir("./ply",pattern=".ply"))-4)))###donne nom de scan a ptsarray et -4 pour retirer derniere lettre de nom
+  substr(dir("./ply",pattern=".ply"),1,(nchar(dir("./ply",pattern=".ply"))-4)))
 arraylmAC<-ptsarrayAC
-arraylmAC
 
 
 ##### CHANGING MISSING LANDMARKS BEFORE MIRRORING ######### - NB, use 'mirrored_skull_LMs.R' if you are not using your own data 
@@ -121,6 +120,9 @@ arraylmAC
 
 arraylmAC[which(arraylmAC==9999)] <- NA
 arraylmAC <- estimate.missing(arraylmAC,method="TPS")
+
+#let's call arraylmAC ' skull' to differentiate from the mirrored skull LMs
+manual_skull <- arraylm
 
 
 #MIRROR THESE LANDMARKS over the central line plane of the skull 
@@ -177,5 +179,5 @@ Mirrored_skull_AC=Mirrored_data$coords #Subset out the coords
 col=rainbow(length(1:dim(Mirrored_data)[1]))
 shapes3d(Y.gpa$coords[,,1], color=col)
 
-#We now have two data sets with which to quanitfy asymmetry: the manually landmarked skull (Manual_skull_AB) and the computer mirrored data (Mirrored_skull_AC)
+#We now have two data sets with which to quantify asymmetry: the manually landmarked skull (Manual_skull_AB) and the computer mirrored data (Mirrored_skull_AC)
 #Use these in Step 3
