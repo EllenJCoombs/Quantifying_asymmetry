@@ -17,7 +17,7 @@
 ##### PLEASE NOTE ########
 #The code shows you how to read in your own .pts files to make them an array
 #If you would like to replicate the results shown in this study rather than your own .pts, 
-#please use the data from the data file: full skull = 'manual_skull_LMs.R' (LMs 1:123) and mirrored skull = 'mirrored_skull_LMs.R'
+#please use the data from the data file: full skull = 'manual_skull_LMs.R' (LMs 1:123) and mirrored skull = 'mirrored_skull_LMs.R' (LMs 1:66)
 
 #Code to run to pull out radii for assessing asymmetry in cetaceans
 
