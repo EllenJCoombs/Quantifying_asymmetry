@@ -55,9 +55,6 @@ arraylm<-ptsarray #this is your array
 
 
 ##### MISSING LANDMARKS #########
-#do this first and then rearrange landmarks 
-#Landmarks need to be 'reshuffled' because we added 4 extra LMs on the nasal to be reflect that one midline landmark would 
-#not work in the asymmetrical odontocetes 
 
 arraylm[which(arraylm==9999)] <- NA
 arraylm <- estimate.missing(arraylm,method="TPS")
@@ -90,7 +87,7 @@ PCA <- plotTangentSpace(manual_skull$coords, legend=TRUE)
 
 ############################################################
 #                                                          #
-#     2. Load second dataset - half LM skull to mirror     #  Or read in our data set 'mirror_skull_LMs.R' if you are not using your own data and skip to line 126
+#     2. Load second dataset - half LM skull to mirror     #  Or read in our data set 'mirror_skull_LMs.R' if you are not using your own data and skip to line 114
 #                                                          #                          
 ############################################################
 
