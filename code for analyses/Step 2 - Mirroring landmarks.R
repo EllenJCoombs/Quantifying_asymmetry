@@ -14,6 +14,11 @@
 #Run for all specimens (157) 
 #Run for a subset of bilaterally symmetrical specimens (mysticetes in this example)
 
+##### PLEASE NOTE ########
+#The code shows you how to read in your own .pts files to make them an array
+#If you would like to replicate the results shown in this study rather than your own .pts, 
+#please use the data from the data file: full skull = 'manual_skull_LMs.R' (LMs 1:123) and mirrored skull = 'mirrored_skull_LMs.R'
+
 #Code to run to pull out radii for assessing asymmetry in cetaceans
 
 library(Rvcg)
@@ -23,47 +28,16 @@ library(rgl)
 library(geomorph)
 library(paleomorph)
 
-#Reading in landmarks only - these are .pts files
-###=========== LOADING DATA SET 1: WHOLE LANDMARKED SKULL 
-
-setwd("X:xxxxxxx/xxxxxx") 
-
-#Mesh + spheres 
-ply=ply2mesh(file="Delphinus delphis AMNH 75332 AB.ply")
-shade3d(ply, col=bone1)
-spheres3d(ptsarray[,,2],radius = 4,col=datcol2) 
-
-#shows the colour spheres 
-text3d(dataAB[,,2],text=1:dim(dataAB)[[1]]) #add text numbers 
-
-#lollipop plot 
-#Add label = TRUE if you want the numbers 
-plotRefToTarget(ptsarray[,,1],MirroredAC[,,1],method="vector")
-
-
-#=========== Combine datasets (AB and AC) to look at morphospace 
-#This is an extra nice step to view the morphospace if desired. If not head to '1. READ IN THE MANUAL LMS'
-
-all_array <- abind(ptsarray, MirroredAC, along = 3)
-
-Y.gpa3=gpagen(all_array) #Remove non-shape aspects 
-data3=Y.gpa3$coords #Subset out the coords 
-size=Y.gpa3$Csize
-
-#plot morphospace
-PCA=plotTangentSpace(all_array, axis1=1, axis2=2, label=dimnames(data)[[3]])
-
-
 
 #========================================#
-#      1. READ IN THE MANUAL LMS         #
+#      1. READ IN THE MANUAL LMS         #  #Or read in our data set 'manual_skull_LMs.R' if you are not using your own data and skip this part
 #========================================#
 
 
 ###=========== LOADING DATA SET 1: WHOLE LANDMARKED SKULL 
 #Read in landmarks manually placed on the whole skull 
 
-ntaxa<-157 ## number of specimens (extant only) - NB can also put this in the code below (x,y,z) 
+ntaxa <-157 ## number of specimens (extant only) - NB can also put this in the code below (x,y,z) 
 #data set .pts from Checkpoint
 
 ptslist<-dir(pattern='.pts',recursive=T)
@@ -100,7 +74,7 @@ manual_skull <- arraylm
 
 #############################
 #                           #
-#   PROCRUSTES THE DATA     #
+#   PROCRUSTES THE DATA     #  #Or read in our data set 'mirror_skull_LMs.R' if you are not using your own data and skip this part 
 #                           #
 #############################
 
@@ -141,7 +115,7 @@ arraylmAC<-ptsarrayAC
 arraylmAC
 
 
-##### CHANGING MISSING LANDMARKS BEFORE MIRRORING #########
+##### CHANGING MISSING LANDMARKS BEFORE MIRRORING ######### - NB, use 'mirrored_skull_LMs.R' if you are not using your own data 
 #Otherwise you get weird numbers that aren't 9999 mirroring
 #estimate.missing from Geomorph is used for estimating missing landmarks 
 
@@ -152,7 +126,7 @@ arraylmAC <- estimate.missing(arraylmAC,method="TPS")
 #MIRROR THESE LANDMARKS over the central line plane of the skull 
 
 ########## SYMMETRISATION TO IMPROVE THE SHAPE ANALYSES #########################
-#Ellen's code 
+
 
 midline<-as.integer(c(38,40,48,49,51,54,55,56,61)) # LM that are on the midline + parasphenoid curve points + NO patch point
 #got length(midline)= 9 points on the midline
