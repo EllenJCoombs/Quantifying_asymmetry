@@ -181,3 +181,5 @@ shapes3d(Y.gpa$coords[,,1], color=col)
 
 #We now have two data sets with which to quantify asymmetry: the manually landmarked skull (Manual_skull_AB) and the computer mirrored data (Mirrored_skull_AC)
 #Use these in Step 3
+
+
