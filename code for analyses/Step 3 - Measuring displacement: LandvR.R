@@ -88,3 +88,5 @@ radii_mean=apply(radii, c(1), mean) #c(1) look at the first column - the radii
 #example
 #looking at the average radii compared to specimen 21 (or choose an average specimen if preferred)
 get.col.spectrum <- landvR::procrustes.var.plot(Manual_skull_AB[,,21], Mirrored_skull_AC[,,21], col.val = radii_mean, col = colfunc)
+
+
