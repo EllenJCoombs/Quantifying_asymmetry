@@ -116,8 +116,3 @@ t_test_LMs_diff <- t.test(var_range_radii[landmarks_fix], var_range_radii[-landm
 #Summary with p-value
 t_test_LMs_diff
 
-
-
-
-
-
