@@ -90,3 +90,34 @@ radii_mean=apply(radii, c(1), mean) #c(1) look at the first column - the radii
 get.col.spectrum <- landvR::procrustes.var.plot(Manual_skull_AB[,,21], Mirrored_skull_AC[,,21], col.val = radii_mean, col = colfunc)
 
 
+#Checking for significant differences bwtween the two sides 
+#Code from Agnese Lanzetti - see https://github.com/AgneseLan for details 
+
+#Matrix with just the radius column from landVR output
+radii <- symm_diff_radii[,1,]
+
+#Create array to be filled with radii only
+radii_mirror_array <- array(dim = c(nrow(radii), 1, ncol(radii))) #1 is the columns of data we need  - see output of previous line
+
+#Loop linear distances calculations
+for (b in 1:ncol(radii)){
+  radii_mirror_array[,,b] <- radii[,b]
+  
+}
+#Set dimnames as specimens
+dimnames(radii_mirror_array)[[3]] <- dimnames(coords_LMs)[[3]]
+
+#Overall variance in the dataset - max specimen - min specimen
+var_range_radii <- rowSums(apply(radii_mirror_real, c(1,2), var))
+
+#Test difference between sides in entire dataset - is the variance on the right higher than on the left+midline?
+t_test_LMs_diff <- t.test(var_range_radii[landmarks_fix], var_range_radii[-landmarks_fix])
+
+#Summary with p-value
+t_test_LMs_diff
+
+
+
+
+
+
