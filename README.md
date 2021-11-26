@@ -45,7 +45,7 @@ In this repository you will find raw data (.csv and .xlsx files) and code for an
 As above 
 
  :file_folder:
-* **Code for analyses**
+* **code for analyses**
 
 ## License :page_with_curl:
 This project is licensed under the X License - see 
