@@ -29,7 +29,7 @@ DOI:
 
 All data can be converted to .csv for use in R
 
-The data are provided in the `Raw data` folder
+The data are provided in the `data` folder
 1. 
 2. 
 3. 
