@@ -40,7 +40,7 @@ The data are provided in the `Raw data` folder
 In this repository you will find raw data (.csv and .xlsx files) and code for analyses (code supplied as .R files)
 
  :file_folder:
-* **Raw data**
+* **data**
 
 As above 
 
