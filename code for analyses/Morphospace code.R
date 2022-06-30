@@ -40,10 +40,10 @@ pca_scores2 <- pca_scores2 %>% convert(fct(landmarks))
 g <- ggplot(pca_scores2, aes(x=Comp1, y=Comp2, fill=landmarks))+ 
   geom_point(size=2,aes(shape=landmarks, colour=landmarks))+
   scale_shape_manual(values=c(24, 22)) +
-  scale_alpha(range=c(0.4, 1),guide=FALSE)+
+  scale_colour_manual(values=c("#440154FF", "#2A788EFF")) +
+  scale_alpha(range=c(0.4, 1),guide= "none")+
   xlab(paste0("PC Axis 1 (", signif((pca_res$pc.summary$importance[2,1]*100),3), "57.2 % of Total Variance)")) + 
   ylab(paste0("PC Axis 2 (",signif((pca_res$pc.summary$importance[2,2]*100),3),"8.9 % of Total Variance)")) +
-  scale_colour_manual(values=c("#440154FF", "#2A788EFF")) +
   theme_bw()
   #geom_text(aes(label= number), hjust=1, vjust=2) # add this if you want it with numbers for each specimen
 
