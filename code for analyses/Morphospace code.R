@@ -19,10 +19,6 @@ species_data <- read.csv('ODONTS_dataALL.csv') #this data set has info on whethe
 #Bind the data set and Procrustes as one
 final_dataset=abind::abind(manual_skull_LMs, mirror_skull_LMs.R, along = 3) 
 
-#Add species names to data set (first 157 are manual LMd, second 157 are computer LMd (mirrored))
-#This data set has the landmark names (computer or manual) for the plot 
-
-
 #Procrustes the data 
 final_data_PROC=geomorph::gpagen(final_dataset) #Remove non-shape aspects 
 final_data_COORDS=final_data_PROC$coords #Subset out the coords 
