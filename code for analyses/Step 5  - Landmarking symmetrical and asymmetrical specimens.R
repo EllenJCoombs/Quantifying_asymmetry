@@ -47,7 +47,7 @@ add_col_or_row = function(x, n = 1, add_col = T, fill = 0)
   array(t(cbind(m1, m2)),
         c(nrow(x) + ((!add_col) * n), ncol(x) + (add_col * n), dim(x)[3]))
 }
-specimens2<-add_col_or_row(symm_LMs,n=num.missing,add_col=FALSE,fill=NA)
+specimens2 <- add_col_or_row(symm_LMs, n=num.missing, add_col=FALSE,fill=NA)
 dimnames(specimens2)[3]<-dimnames(symm_LMs)[3]
 bilats<-cbind(leftside,rightside)
 newarray<-mirrorfill(specimens2,l1=midline,l2=bilats)

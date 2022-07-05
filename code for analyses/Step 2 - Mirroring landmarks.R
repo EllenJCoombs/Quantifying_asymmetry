@@ -69,6 +69,7 @@ text3d(arraylm[,,2], text=1:dim(arraylm)[1])
 #let's call arraylm 'manual skull' to differentiate from the mirrored skull LMs
 manual_skull <- arraylm
 
+###HERE IS WHERE I CAN LOAD IN MANUAL_SKULL_LMSs.R
 #############################
 #                           #
 #   PROCRUSTES THE DATA     #  Or read in our data set 'mirror_skull_LMs.R' if you are not using your own data and skip this part 
@@ -126,7 +127,7 @@ manual_skull <- arraylm
 
 ########## SYMMETRISATION TO IMPROVE THE SHAPE ANALYSES #########################
 
-
+####LOAD IN MIRROR SKULL????
 midline<-as.integer(c(38,40,48,49,51,54,55,56,61)) # LM that are on the midline + parasphenoid curve points + NO patch point
 #got length(midline)= 9 points on the midline
 
