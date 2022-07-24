@@ -91,7 +91,7 @@ add_col_or_row = function(x, n = 1, add_col = T, fill = 0)
   array(t(cbind(m1, m2)),
         c(nrow(x) + ((!add_col) * n), ncol(x) + (add_col * n), dim(x)[3]))
 }
-specimens<-add_col_or_row(slidedlms,n=num.missing,add_col=FALSE,fill=NA)
+specimens<-add_col_or_row(asymmLMs,n=num.missing,add_col=FALSE,fill=NA)
 dimnames(specimens)[3]<-dimnames(asymmLMs)[3] #make sure the specimens match up 
 bilats<-cbind(leftside,rightside) #bind the left and the right side 
 newarray<-mirrorfill(specimens,l1=midline,l2=bilats) #newarray = final, correctly mirrored landmarks 
